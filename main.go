@@ -47,6 +47,9 @@ func handleSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println("Request completed !!!")
+	w.Header().Set("Access-Control-Allow-Origin", "*") // or specific origin
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Email sent successfully"))
 }
