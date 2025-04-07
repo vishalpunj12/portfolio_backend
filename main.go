@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"net/smtp"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 type ContactRequest struct {
@@ -18,7 +16,6 @@ type ContactRequest struct {
 }
 
 func main() {
-	godotenv.Load()
 	http.HandleFunc("/send", handleSend)
 	port := os.Getenv("PORT")
 	if port == "" {
