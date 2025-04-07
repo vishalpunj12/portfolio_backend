@@ -58,7 +58,10 @@ func handleSend(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Request completed !!!")
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Email sent successfully"))
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"code":    200,
+		"message": "Email sent successfully",
+	})
 }
 
 func sendEmail(data ContactRequest) error {
