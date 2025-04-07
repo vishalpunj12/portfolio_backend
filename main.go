@@ -28,6 +28,7 @@ func main() {
 }
 
 func handleSend(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Request received!!!")
 	if r.Method != http.MethodPost {
 		http.Error(w, "Only POST allowed", http.StatusMethodNotAllowed)
 		return
@@ -45,7 +46,7 @@ func handleSend(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to send email: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Request completed !!!")
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Email sent successfully"))
 }
