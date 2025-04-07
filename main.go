@@ -10,9 +10,11 @@ import (
 )
 
 type ContactRequest struct {
-	Name    string `json:"name"`
-	Address string `json:"address"`
-	Message string `json:"message"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Email     string `json:"email"`
+	Phone     string `json:"phone"`
+	Message   string `json:"message"`
 }
 
 func main() {
@@ -58,10 +60,11 @@ func sendEmail(data ContactRequest) error {
 
 	msg := []byte(
 		"To: " + to + "\r\n" +
-			"Subject: New Contact Message\r\n" +
+			"Subject: New Contact Message received from portfolio site\r\n" +
 			"\r\n" +
-			"Name: " + data.Name + "\n" +
-			"Address: " + data.Address + "\n" +
+			"Name: " + data.FirstName + " " + data.LastName + "\n" +
+			"Email: " + data.Email + "\n" +
+			"Phone: " + data.Phone + "\n" +
 			"Message: " + data.Message + "\n")
 
 	auth := smtp.PlainAuth("", from, password, smtpHost)
